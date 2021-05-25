@@ -2,6 +2,12 @@
     "composer/package-versions-deprecated": {
         "version": "1.11.99.1"
     },
+    "composer/semver": {
+        "version": "3.2.4"
+    },
+    "composer/xdebug-handler": {
+        "version": "2.0.1"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -28,6 +34,9 @@
     },
     "doctrine/dbal": {
         "version": "2.12.1"
+    },
+    "doctrine/deprecations": {
+        "version": "v0.5.3"
     },
     "doctrine/doctrine-bundle": {
         "version": "2.0",
@@ -96,6 +105,21 @@
     "egulias/email-validator": {
         "version": "2.1.25"
     },
+    "escapestudios/symfony2-coding-standard": {
+        "version": "3.12.0"
+    },
+    "friendsofphp/php-cs-fixer": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "be2103eb4a20942e28a6dd87736669b757132435"
+        },
+        "files": [
+            ".php-cs-fixer.dist.php"
+        ]
+    },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.3"
     },
@@ -114,8 +138,14 @@
     "nikic/php-parser": {
         "version": "v4.10.4"
     },
+    "pdepend/pdepend": {
+        "version": "2.9.1"
+    },
     "php": {
         "version": "7.4"
+    },
+    "php-cs-fixer/diff": {
+        "version": "v2.0.2"
     },
     "phpdocumentor/reflection-common": {
         "version": "2.2.0"
@@ -125,6 +155,9 @@
     },
     "phpdocumentor/type-resolver": {
         "version": "1.4.0"
+    },
+    "phpmd/phpmd": {
+        "version": "2.10.1"
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -148,6 +181,18 @@
         },
         "files": [
             "config/packages/sensio_framework_extra.yaml"
+        ]
+    },
+    "squizlabs/php_codesniffer": {
+        "version": "3.6",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "3.6",
+            "ref": "1019e5c08d4821cb9b77f4891f8e9c31ff20ac6f"
+        },
+        "files": [
+            "phpcs.xml.dist"
         ]
     },
     "symfony/asset": {
