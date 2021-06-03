@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="virtual_note">
+                <source>virtual_note</source>
+                <target>Wirtualny Notatnik</target>
+            </trans-unit>
+            <trans-unit id="label_actions">
+                <source>label_actions</source>
+                <target>Operacje</target>
+            </trans-unit>
+            <trans-unit id="label_id">
+                <source>label_id</source>
+                <target>Id</target>
+            </trans-unit>
+            <trans-unit id="label_title">
+                <source>label_title</source>
+                <target>Tytuł</target>
+            </trans-unit>
+            <trans-unit id="label_content">
+                <source>label_content</source>
+                <target>Treść</target>
+            </trans-unit>
+            <trans-unit id="label_tags">
+                <source>label_tags</source>
+                <target>Tagi</target>
+            </trans-unit>
+            <trans-unit id="message_empty_list">
+                <source>message_empty_list</source>
+                <target>Brak listy.</target>
+            </trans-unit>
+            <trans-unit id="button_view">
+                <source>button_view</source>
+                <target>Pokaż</target>
+            </trans-unit>
+            <trans-unit id="button_back">
+                <source>button_back</source>
+                <target>Powrót do listy</target>
+            </trans-unit>
+            <trans-unit id="title_task_list">
+                <source>title_task_list</source>
+                <target>Zadania</target>
+            </trans-unit>
+            <trans-unit id="title_categories_list">
+                <source>title_categories_list</source>
+                <target>Kategorie</target>
+            </trans-unit>
+            <trans-unit id="title_tags_list">
+                <source>title_tags_list</source>
+                <target>Tagi</target>
+            </trans-unit>
+            <trans-unit id="sign_up">
+                <source>sign_up</source>
+                <target>Logowanie</target>
+            </trans-unit>
+            <trans-unit id="add">
+                <source>add</source>
+                <target>Dodaj</target>
+            </trans-unit>
+            <trans-unit id="delete">
+                <source>delete</source>
+                <target>Usuń</target>
+            </trans-unit>
+            <trans-unit id="title_task_details">
+                <source>title_task_details</source>
+                <target>Zadanie #%id%</target>
+            </trans-unit>
+            <trans-unit id="title_notes_list">
+                <source>title_notes_list</source>
+                <target>Notatki</target>
+            </trans-unit>
+            <trans-unit id="title_notes_details">
+                <source>title_notes_details</source>
+                <target>Notatka #%id%</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

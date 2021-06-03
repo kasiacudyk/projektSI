@@ -55,4 +55,8 @@ class ToDoList
 
         return $this;
     }
+
+    public function render(string $string, array $array)
+    {
+    }
 }

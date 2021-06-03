@@ -72,6 +72,7 @@ class RecordController extends AbstractController
     public function show(int $id): Response
     {
         $item = $this->repository->findById($id);
+
         return $this->render(
             'record/show.html.twig',
             ['item' => $item]

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title_task_details'|trans({'%id%': task.id|default('')}) }}
+{% endblock %}
+
+{% block body %}
+    {% block header %}
+        <h1>{{ 'virtual_note'|trans }}</h1>
+    {% endblock %}
+
+    <h2>{{ 'title_task_details'|trans({'%id%': task.id|default('')}) }}</h2>
+    {% if task is defined and task|length %}
+        <dl>
+            <dt>{{ 'label_id'|trans }}</dt>
+            <dd>{{ task.id }}</dd>
+            <dt>{{ 'label_title'|trans }}</dt>
+            <dd>{{  task.title }}</dd>
+        </dl>
+        <p>
+            <a href="{{ url('task_index') }}" title="back to the list">
+                {{ 'button_back'|trans }}
+            </a>
+        </p>
+    {% else %}
+        <p>
+            {{ 'message_item_not_found'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}
