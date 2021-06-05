@@ -36,14 +36,14 @@ class ToDoListController extends AbstractController
     {
         return $this->render(
             'todolist/index.html.twig',
-            ['todolists' => $toDoListRepository->findAll()]
+            ['todolist' => $toDoListRepository->findAll()]
         );
     }
 
     /**
      * Show action.
      *
-     * @param \App\Entity\ToDoList $task To Do List entity
+     * @param \App\Entity\ToDoList $toDoList To Do List entity
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *

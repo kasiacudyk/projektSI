@@ -1,4 +1,7 @@
 <?php
+/**
+ * To Do List entity.
+ */
 
 namespace App\Entity;
 
@@ -6,11 +9,18 @@ use App\Repository\ToDoListRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Class ToDoList
+ *
  * @ORM\Entity(repositoryClass=ToDoListRepository::class)
  */
+
 class ToDoList
 {
     /**
+     * Primary key.
+     *
+     * @var int
+     *
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -37,11 +47,9 @@ class ToDoList
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(string $title): void
     {
         $this->title = $title;
-
-        return $this;
     }
 
     public function getDescription(): ?string
@@ -49,11 +57,9 @@ class ToDoList
         return $this->description;
     }
 
-    public function setDescription(?string $description): self
+    public function setDescription(?string $description): void
     {
         $this->description = $description;
-
-        return $this;
     }
 
     public function render(string $string, array $array)
