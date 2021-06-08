@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title_categories_delete'|trans({'%id%': categories.id|default('')}) }}
+{% endblock %}
+
+{% block body %}
+    {% block header %}
+        <h1>{{ 'virtual_note'|trans }}</h1>
+    {% endblock %}
+
+    <h1>{{ 'title_categories_delete'|trans({'%id%': categories.id|default('')}) }}</h1>
+    {{ form_start(form, { method: 'DELETE', action: url('categories_delete', {id: categories.id}) }) }}
+    {{ form_widget(form) }}
+    <div class="form-group row float-sm-right">
+        <input type="submit" value="{{ 'action_save'|trans }}" class="btn btn-primary" />
+    </div>
+    <div class="form-group row float-sm-left">
+        <a href="{{ url('categories_index') }}" class="btn btn-link">
+            {{ 'button_back'|trans }}
+        </a>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

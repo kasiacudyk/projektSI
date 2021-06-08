@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'title_task_details'|trans({'%id%': to_do_list.id|default('')}) }}
+    {{ 'title_categories_details'|trans }}
 {% endblock %}
 
 {% block body %}
@@ -9,16 +9,16 @@
         <h1>{{ 'virtual_note'|trans }}</h1>
     {% endblock %}
 
-    <h2>{{ 'title_task_details'|trans({'%id%': to_do_list.id|default('')}) }}</h2>
-    {% if to_do_list is defined and to_do_list|length %}
+    <h2>{{ 'title_categories_details'|trans }}</h2>
+    {% if categories is defined and categories|length %}
         <dl>
             <dt>{{ 'label_id'|trans }}</dt>
-            <dd>{{ to_do_list.id }}</dd>
-            <dt>{{ 'label_title'|trans }}</dt>
-            <dd>{{  to_do_list.title }}</dd>
+            <dd>{{ categories.id }}</dd>
+            <dt>{{ 'label_name'|trans }}</dt>
+            <dd>{{  categories.name }}</dd>
         </dl>
         <p>
-            <a href="{{ url('todolist_index') }}" title="back to the list">
+            <a href="{{ url('categories_index') }}" title="back to the list">
                 {{ 'button_back'|trans }}
             </a>
         </p>

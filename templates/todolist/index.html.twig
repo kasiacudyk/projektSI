@@ -5,27 +5,36 @@
 {% endblock %}
 
 {% block body %}
+    {{ include('menu.html.twig') }}
+
+    <h1>{{ 'title_task_list'|trans }}</h1>
+    {% if pagination is defined and pagination.items|length %}
+
+    <div class="navigation text-center">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+
     {% block header %}
         <h1>{{ 'virtual_note'|trans }}</h1>
     {% endblock %}
 
     <h2>{{ 'title_task_list'|trans }}</h2>
-    {% if tasks is defined and tasks|length %}
+
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ 'label_id'|trans }}</th>
-                <th>{{ 'label_title'|trans }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_id'|trans, 'to_do_list.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_title'|trans, 'to_do_list.title') }}</th>
                 <th>{{ 'label_actions'|trans }}</th>
             </tr>
             </thead>
             <tbody>
-            {% for task in tasks %}
+            {% for to_do_list in pagination.items %}
                 <tr>
-                    <td>{{ task.id }}</td>
-                    <td>{{ task.title }}</td>
+                    <td>{{ to_do_list.id }}</td>
+                    <td>{{ to_do_list.title }}</td>
                     <td>
-                        <a href="{{ url('task_show', {id: task.id}) }}" title="{{ 'button_view'|trans }}">
+                        <a href="{{ url('todolist_show', {id: to_do_list.id}) }}" title="{{ 'button_view'|trans }}">
                             {{ 'button_view'|trans }}
                         </a>
                     </td>
@@ -33,6 +42,11 @@
             {% endfor %}
             </tbody>
         </table>
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
     {% else %}
         <p>
             {{ 'message_empty_list'|trans }}

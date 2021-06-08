@@ -14,13 +14,17 @@
                 <source>label_id</source>
                 <target>Id</target>
             </trans-unit>
+            <trans-unit id="label_name">
+                <source>label_name</source>
+                <target>Name</target>
+            </trans-unit>
             <trans-unit id="label_title">
                 <source>label_title</source>
                 <target>Title</target>
             </trans-unit>
-            <trans-unit id="label_content">
-                <source>label_content</source>
-                <target>Content</target>
+            <trans-unit id="label_description">
+                <source>label_description</source>
+                <target>Description</target>
             </trans-unit>
             <trans-unit id="label_tags">
                 <source>label_tags</source>
@@ -33,6 +37,18 @@
             <trans-unit id="button_view">
                 <source>button_view</source>
                 <target>View</target>
+            </trans-unit>
+            <trans-unit id="button_edit">
+                <source>button_edit</source>
+                <target>Edit</target>
+            </trans-unit>
+            <trans-unit id="button_create">
+                <source>button_create</source>
+                <target>Create</target>
+            </trans-unit>
+            <trans-unit id="button_delete">
+                <source>button_delete</source>
+                <target>Delete</target>
             </trans-unit>
             <trans-unit id="button_back">
                 <source>button_back</source>
@@ -73,6 +89,14 @@
             <trans-unit id="title_notes_details">
                 <source>title_notes_details</source>
                 <target>Note details #%id%</target>
+            </trans-unit>
+            <trans-unit id="title_categories_details">
+                <source>title_categories_details</source>
+                <target>Categories details</target>
+            </trans-unit>
+            <trans-unit id="title_note_list">
+                <source>title_note_list</source>
+                <target>Notes</target>
             </trans-unit>
         </body>
     </file>

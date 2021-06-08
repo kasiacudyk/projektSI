@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Categories;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -14,37 +15,78 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class CategoriesRepository extends ServiceEntityRepository
 {
+    /**
+     * Items per page.
+     *
+     * Use constants to define configuration options that rarely change instead
+     * of specifying them in app/config/config.yml.
+     * See https://symfony.com/doc/current/best_practices.html#configuration
+     *
+     * @constant int
+     */
+    const PAGINATOR_ITEMS_PER_PAGE = 5;
+
+    /**
+     * CategoriesRepository constructor.
+     *
+     * @param ManagerRegistry $registry Manager registry
+     */
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Categories::class);
     }
 
-    // /**
-    //  * @return Categories[] Returns an array of Categories objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+    /**
+     * Query all records.
+     *
+     * @return QueryBuilder Query builder
+     */
 
-    /*
-    public function findOneBySomeField($value): ?Categories
+    public function queryAll(): QueryBuilder
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        return $this->getOrCreateQueryBuilder()
+            ->orderBY('categories.id', 'ASC');
     }
-    */
+
+    /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder   Query builder
+     *
+     * @return QueryBuilder                     Query builder
+     */
+
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('categories');
+    }
+
+    /**
+     * Save record.
+     *
+     * @param \App\Entity\Categories $categories Categories entity
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function save(Categories $categories): void
+    {
+        $this->_em->persist($categories);
+        $this->_em->flush();
+    }
+
+    /**
+     * Delete record.
+     *
+     * @param \App\Entity\Categories $categories Categories entity
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function delete(Categories $categories): void
+    {
+        $this->_em->remove($categories);
+        $this->_em->flush();
+    }
 }

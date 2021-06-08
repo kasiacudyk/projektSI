@@ -5,8 +5,10 @@
 
 namespace App\Controller;
 
-use App\Entity\ToDoList;
+use App\Entity\Notes;
+use App\Repository\NotesRepository;
 use App\Repository\ToDoListRepository;
+use Knp\Component\Pager\Paginator;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,25 +16,25 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class ToDoListController
+ * Class NotesController
  *
- * @Route("/todolist")
+ * @Route("/notes")
  */
-class ToDoListController extends AbstractController
+class NotesController extends AbstractController
 {
-    private ToDoListRepository $todolistRepository;
+    private ToDoListRepository $notesRepository;
 
     private PaginatorInterface $paginator;
 
     /**
-     * ToDoListController contructor.
+     * NotesController contructor.
      *
-     * @param ToDoListRepository $todolistRepository
+     * @param ToDoListRepository $notesRepository
      * @param PaginatorInterface $paginator
      */
     public function __contruct(ToDoListRepository $todolistRepository, PaginatorInterface $paginator)
     {
-        $this->todolistRepository = $todolistRepository;
+        $this->notesRepository = $notesRepository;
         $this->paginator = $paginator;
     }
 
@@ -40,7 +42,7 @@ class ToDoListController extends AbstractController
     /**
      * Index action.
      *
-     * @param ToDoListRepository $todolistRepository
+     * @param NotesRepository $notesRepository
      * @param Request $request
      * @param Paginator $paginator
      *
@@ -49,19 +51,19 @@ class ToDoListController extends AbstractController
      * @Route(
      *     "/",
      *     methods={"GET"},
-     *     name="todolist_index",
+     *     name="notes_index",
      * )
      */
-    public function index(Request $request, ToDoListRepository $todolistRepository, PaginatorInterface $paginator): Response
+    public function index(Request $request, NotesRepository $todolistRepository, PaginatorInterface $paginator): Response
     {
         $pagination = $paginator->paginate(
             $todolistRepository->queryAll(),
             $request->query->getInt('page', 1),
-            ToDoListRepository::PAGINATOR_ITEMS_PER_PAGE
+           NotesRepository::PAGINATOR_ITEMS_PER_PAGE
         );
 
         return $this->render(
-            'todolist/index.html.twig',
+            'notes/index.html.twig',
             ['pagination' => $pagination]
         );
     }
@@ -69,22 +71,22 @@ class ToDoListController extends AbstractController
     /**
      * Show action.
      *
-     * @param ToDoList $to_do_list To Do List entity
+     * @param Notes $notes Notes
      *
      * @return Response HTTP response
      *
      * @Route(
      *     "/{id}",
      *     methods={"GET"},
-     *     name="todolist_show",
+     *     name="notes_show",
      *     requirements={"id": "[1-9]\d*"},
      * )
      */
-    public function show(ToDoList $to_do_list): Response
+    public function show(Notes $notes): Response
     {
         return $this->render(
-            'todolist/show.html.twig',
-            ['to_do_list' => $to_do_list]
+            'notes/show.html.twig',
+            ['notes' => $notes]
         );
     }
 }

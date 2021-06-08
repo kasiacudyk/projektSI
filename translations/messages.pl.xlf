@@ -14,13 +14,17 @@
                 <source>label_id</source>
                 <target>Id</target>
             </trans-unit>
+            <trans-unit id="label_name">
+                 <source>label_name</source>
+                 <target>Nazwa</target>
+            </trans-unit>
             <trans-unit id="label_title">
                 <source>label_title</source>
                 <target>Tytuł</target>
             </trans-unit>
-            <trans-unit id="label_content">
-                <source>label_content</source>
-                <target>Treść</target>
+            <trans-unit id="label_description">
+                <source>label_description</source>
+                <target>Opis</target>
             </trans-unit>
             <trans-unit id="label_tags">
                 <source>label_tags</source>
@@ -33,6 +37,18 @@
             <trans-unit id="button_view">
                 <source>button_view</source>
                 <target>Pokaż</target>
+            </trans-unit>
+            <trans-unit id="button_edit">
+                <source>button_edit</source>
+                <target>Edytuj</target>
+            </trans-unit>
+            <trans-unit id="button_create">
+                <source>button_create</source>
+                <target>Utwórz</target>
+            </trans-unit>
+            <trans-unit id="button_delete">
+                <source>button_delete</source>
+                <target>Usuń</target>
             </trans-unit>
             <trans-unit id="button_back">
                 <source>button_back</source>
@@ -72,7 +88,15 @@
             </trans-unit>
             <trans-unit id="title_notes_details">
                 <source>title_notes_details</source>
-                <target>Notatka #%id%</target>
+                <target>Szczegóły notatki #%id%</target>
+            </trans-unit>
+            <trans-unit id="title_categories_details">
+                <source>title_categories_details</source>
+                <target>Szczegóły kategorii</target>
+            </trans-unit>
+            <trans-unit id="title_note_list">
+                <source>title_note_list</source>
+                <target>Notatki</target>
             </trans-unit>
         </body>
     </file>

@@ -1,4 +1,7 @@
 <?php
+/**
+ * Notes entity.
+ */
 
 namespace App\Entity;
 
@@ -6,6 +9,8 @@ use App\Repository\NotesRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * Class Notes
+ *
  * @ORM\Entity(repositoryClass=NotesRepository::class)
  */
 class Notes
@@ -18,7 +23,7 @@ class Notes
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string", length=255)
      */
     private $title;
 
@@ -26,6 +31,12 @@ class Notes
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="notes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $categories;
 
     public function getId(): ?int
     {
@@ -37,11 +48,9 @@ class Notes
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(string $title): void
     {
         $this->title = $title;
-
-        return $this;
     }
 
     public function getDescription(): ?string
@@ -49,10 +58,20 @@ class Notes
         return $this->description;
     }
 
-    public function setDescription(?string $description): self
+    public function setDescription(?string $description): void
     {
         $this->description = $description;
 
-        return $this;
+    }
+
+    public function getCategories(): ?Categories
+    {
+        return $this->categories;
+    }
+
+    public function setCategories(?Categories $categories): void
+    {
+        $this->categories = $categories;
+
     }
 }

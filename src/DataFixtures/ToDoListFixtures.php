@@ -34,17 +34,17 @@ class ToDoListFixtures extends Fixture
      *
      * @param ObjectManager $manager Persistence object manager
      */
-    protected function load(ObjectManager $manager): void
+    public function load(ObjectManager $manager): void
     {
         $this->faker = Factory::create();
         $this->manager = $manager;
 
         for ($i = 0; $i < 10; ++$i) {
-            $toDoList = new ToDoList();
-            $toDoList->setTitle($this->faker->sentence);
-            $toDoList->setDescription($this->faker->paragraph(10));
+            $to_do_list = new ToDoList();
+            $to_do_list->setTitle($this->faker->sentence);
+            $to_do_list->setDescription($this->faker->paragraph(10));
 
-            $this->manager->persist($this);
+            $this->manager->persist($to_do_list);
         }
 
         $manager->flush();

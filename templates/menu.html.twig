@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <nav id="menu">
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a href="{{ url('notes_index') }}"><button type="button" class="btn btn-light">Notatki</button></a>
+
+            </li>
+            <li class="nav-item">
+                <a href="{{ url('todolist_index') }}"><button type="button" class="btn btn-light">Lista zadań</button></a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url('categories_index') }}"><button type="button" class="btn btn-light">Kategorie</button></a>
+            </li>
+        </ul>
+    </nav>
+{% endblock %}
