@@ -1,9 +1,11 @@
 <?php
+/**
+ * Notes repository.
+ */
 
 namespace App\Repository;
 
 use App\Entity\Notes;
-use App\Entity\ToDoList;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
@@ -27,9 +29,42 @@ class NotesRepository extends ServiceEntityRepository
      */
     const PAGINATOR_ITEMS_PER_PAGE = 5;
 
+    /**
+     * NotesRepository constructor.
+     *
+     * @param ManagerRegistry $registry Manager registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Notes::class);
+    }
+
+    /**
+     * Save record.
+     *
+     * @param \App\Entity\Notes $notes Notes entity
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function save(Notes $notes): void
+    {
+        $this->_em->persist($notes);
+        $this->_em->flush();
+    }
+
+    /**
+     * Delete record.
+     *
+     * @param \App\Entity\Notes $notes Notes entity
+     *
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function delete(Notes $notes): void
+    {
+        $this->_em->remove($notes);
+        $this->_em->flush();
     }
 
     /**
@@ -40,7 +75,7 @@ class NotesRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->orderBy('notes.title', 'ASC');
+            ->orderBy('notes.createdAt', 'DESC');
     }
 
     /**

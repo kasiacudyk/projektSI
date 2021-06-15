@@ -25,6 +25,7 @@ class NotesFixtures extends AbstractBaseFixtures implements DependentFixtureInte
             $notes = new Notes();
             $notes->setTitle($this->faker->sentence);
             $notes->setDescription($this->faker->paragraph(10));
+            $notes->setCreatedAt($this->faker->dateTimeBetween('-100 days', '-1 days'));
             $notes->setCategories($this->getRandomReference('categories'));
 
             return $notes;

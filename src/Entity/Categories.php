@@ -1,4 +1,7 @@
 <?php
+/**
+ * Categories entity.
+ */
 
 namespace App\Entity;
 
@@ -6,13 +9,24 @@ use App\Repository\CategoriesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass=CategoriesRepository::class)
+ * Class Categories.
+ *
+ * @ORM\Entity(repositoryClass="App\Repository\CategoriesRepository", repositoryClass=CategoriesRepository::class)
+ *
+ * @UniqueEntity(fields={"name"})
  */
 class Categories
 {
     /**
+     * Primary key.
+     *
+     * @var int
+     *
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
@@ -20,14 +34,52 @@ class Categories
     private $id;
 
     /**
+     * Name.
+     *
+     * @var string
+     *
      * @ORM\Column(type="string", length=45)
+     *
+     * @Assert\Type(type="string")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min="3",
+     *     max="64",
+     * )
      */
     private $name;
 
     /**
+     * Notes.
+     *
+     * @var \Doctrine\Common\Collections\ArrayCollection|\App\Entity\Notes[] $notes Notes
+     * 
      * @ORM\OneToMany(targetEntity=Notes::class, mappedBy="categories")
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="App\Entity\Task",
+     *     mappedBy="category",
+     * )
      */
     private $notes;
+
+    /**
+     * Code.
+     *
+     * @var string
+     *
+     * @ORM\Column(type="string", length=45)
+     *
+     *
+     * @Assert\Type(type="string")
+     * @Assert\Length(
+     *     min="3",
+     *     max="64",
+     * )
+     *
+     * @Gedmo\Slug(fields={"name"})
+     */
+    private $Code;
 
     public function __construct()
     {
@@ -76,5 +128,17 @@ class Categories
             }
         }
 
+    }
+
+    public function getCode(): ?string
+    {
+        return $this->Code;
+    }
+
+    public function setCode(string $Code): self
+    {
+        $this->Code = $Code;
+
+        return $this;
     }
 }

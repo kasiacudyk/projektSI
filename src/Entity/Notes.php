@@ -6,7 +6,9 @@
 namespace App\Entity;
 
 use App\Repository\NotesRepository;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Class Notes
@@ -37,6 +39,17 @@ class Notes
      * @ORM\JoinColumn(nullable=false)
      */
     private $categories;
+
+    /**
+     * Created at.
+     *
+     * @var DateTimeInterface
+     *
+     * @ORM\Column(type="datetime")
+     *
+     * @Gedmo\Timestampable(on="create")
+     */
+    private $createdAt;
 
     public function getId(): ?int
     {
@@ -73,5 +86,25 @@ class Notes
     {
         $this->categories = $categories;
 
+    }
+
+    /**
+     * Getter for Created At.
+     *
+     * @return \DateTimeInterface|null Created at
+     */
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Setter for Created at.
+     *
+     * @param \DateTimeInterface $createdAt Created at
+     */
+    public function setCreatedAt(\DateTimeInterface $createdAt): void
+    {
+        $this->createdAt = $createdAt;
     }
 }

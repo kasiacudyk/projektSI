@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'title_categories_delete'|trans({'%id%': categories.id|default('')}) }}
+    {{ 'title_notes_delete'|trans({'%id%': notes.id|default('')}) }}
 {% endblock %}
 
 {% block body %}
@@ -10,14 +10,14 @@
     {% endblock %}
 
     {% include 'default/_form.html.twig' with {
-        page_title: 'title_categories_delete',
-        page_title_param: {'%id%': categories.id},
+        page_title: 'title_notes_delete',
+        page_title_param: {'%id%': notes.id},
         attr: {
             method: 'DELETE',
-            action: url('categories_delete', {'id': categories.id}),
+            action: url('notes_delete', {'id': notes.id}),
         },
         form: form,
         submit_label: 'action_delete'|trans,
-        back_to_list_path: 'categories_index',
+        back_to_list_path: 'notes_index',
     } %}
 {% endblock %}

@@ -41,9 +41,11 @@
                         <a href="{{ url('categories_create', {id: categories.id}) }}" title="{{ 'button_create'|trans }}">
                             {{ 'button_create'|trans }}
                         </a>
+                        {% if not categories.notes|length %}
                         <a href="{{ url('categories_delete', {id: categories.id}) }}" title="{{ 'button_delete'|trans }}">
                             {{ 'button_delete'|trans }}
                         </a>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}

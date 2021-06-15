@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'title_categories_create'|trans }}
+    {{ 'title_notes_edit'|trans({'%id%': notes.id|default('')}) }}
 {% endblock %}
 
 {% block body %}
@@ -10,13 +10,13 @@
     {% endblock %}
 
     {% include 'default/_form.html.twig' with {
-        page_title: 'title_categories_create',
+        page_title: 'title_notes_edit',
+        page_title_param: {'%id%': notes.id},
         attr: {
-            method: 'POST',
-            action: url('categories_create')
+            method: 'PUT',
+            action: url('notes_edit', {'id': notes.id}),
         },
         form: form,
-        submit_label: 'action_create'|trans,
-        back_to_list_path: 'categories_index',
+        back_to_list_path: 'notes_index',
     } %}
 {% endblock %}

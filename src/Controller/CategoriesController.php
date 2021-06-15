@@ -169,9 +169,9 @@ class CategoriesController extends AbstractController
     /**
      * Delete action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request     $request                HTTP request
-     * @param \App\Entity\Categories                        $categories             Categories entity
-     * @param \App\Repository\CategoriesRepository          $categoriesRepository   Categories repository
+     * @param \Symfony\Component\HttpFoundation\Request $request    HTTP request
+     * @param \App\Entity\Categories                      $categories   Category entity
+     * @param \App\Repository\CategoriesRepository        $repository Category repository
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -185,8 +185,14 @@ class CategoriesController extends AbstractController
      *     name="categories_delete",
      * )
      */
-    public function delete(Request $request, Categories $categories, CategoriesRepository $categoriesRepository): Response
+    public function delete(Request $request, Categories $categories, CategoriesRepository $repository): Response
     {
+        if ($categories->getNotes()->count()) {
+            $this->addFlash('warning', 'message_categories_contains_notes');
+
+            return $this->redirectToRoute('categories_index');
+        }
+
         $form = $this->createForm(FormType::class, $categories, ['method' => 'DELETE']);
         $form->handleRequest($request);
 
@@ -195,8 +201,8 @@ class CategoriesController extends AbstractController
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $categoriesRepository->delete($categories);
-            $this->addFlash('success', 'message.deleted_successfully');
+            $repository->delete($categories);
+            $this->addFlash('success', 'message_deleted_successfully');
 
             return $this->redirectToRoute('categories_index');
         }
