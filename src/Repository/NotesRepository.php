@@ -6,6 +6,7 @@
 namespace App\Repository;
 
 use App\Entity\Notes;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
@@ -27,7 +28,7 @@ class NotesRepository extends ServiceEntityRepository
      *
      * @constant int
      */
-    const PAGINATOR_ITEMS_PER_PAGE = 5;
+    const PAGINATOR_ITEMS_PER_PAGE = 10;
 
     /**
      * NotesRepository constructor.
@@ -70,12 +71,22 @@ class NotesRepository extends ServiceEntityRepository
     /**
      * Query all records.
      *
+     * @param array $filters Filters array
+     *
      * @return \Doctrine\ORM\QueryBuilder Query builder
      */
-    public function queryAll(): QueryBuilder
+    public function queryAll(array $filters = []): QueryBuilder
     {
-        return $this->getOrCreateQueryBuilder()
+        $queryBuilder = $this->getOrCreateQueryBuilder()
+            ->select(
+                'partial notes.{id, createdAt, title, description}',
+                'partial categories.{id, name}'
+            )
+            ->join('notes.categories', 'categories')
             ->orderBy('notes.createdAt', 'DESC');
+        $queryBuilder = $this->applyFiltersToList($queryBuilder, $filters);
+
+        return $queryBuilder;
     }
 
     /**
@@ -88,5 +99,62 @@ class NotesRepository extends ServiceEntityRepository
     private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
         return $queryBuilder ?? $this->createQueryBuilder('notes');
+    }
+
+    /**
+     * Query tasks by author.
+     *
+     * @param \App\Entity\User $user    User entity
+     * @param array            $filters Filters array
+     *
+     * @return \Doctrine\ORM\QueryBuilder Query builder
+     */
+    public function queryByAuthor(User $user, array $filters = []): QueryBuilder
+    {
+        $queryBuilder = $this->queryAll($filters);
+        $queryBuilder->andWhere('notes.author = :author')
+            ->setParameter('author', $user);
+
+        return $queryBuilder;
+    }
+
+    /**
+     * Prepare filters for the tasks list.
+     *
+     * @param array $filters Raw filters from request
+     *
+     * @return array Result array of filters
+     */
+    private function prepareFilters(array $filters): array
+    {
+        $resultFilters = [];
+        if (isset($filters['categories_id']) && is_numeric($filters['categories_id'])) {
+            $categories = $this->categoriesService->findOneById(
+                $filters['categories_id']
+            );
+            if (null !== $categories) {
+                $resultFilters['categories'] = $categories;
+            }
+        }
+
+        return $resultFilters;
+    }
+
+    /**
+     * Apply filters to paginated list.
+     *
+     * @param \Doctrine\ORM\QueryBuilder $queryBuilder Query builder
+     * @param array                      $filters      Filters array
+     *
+     * @return \Doctrine\ORM\QueryBuilder Query builder
+     */
+    private function applyFiltersToList(QueryBuilder $queryBuilder, array $filters = []): QueryBuilder
+    {
+        if (isset($filters['categories']) && $filters['categories'] instanceof Categories) {
+            $queryBuilder->andWhere('categories = :categories')
+                ->setParameter('categories', $filters['categories']);
+        }
+
+        return $queryBuilder;
     }
 }

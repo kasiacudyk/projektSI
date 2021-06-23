@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title_tags_details'|trans }}
+{% endblock %}
+
+{% block body %}
+    {% block header %}
+        <h1>{{ 'virtual_note'|trans }}</h1>
+    {% endblock %}
+
+    <h2>{{ 'title_tags_details'|trans }}</h2>
+    {% if tags is defined and tags|length %}
+        <dl>
+            <dt>{{ 'label_id'|trans }}</dt>
+            <dd>{{ tags.id }}</dd>
+            <dt>{{ 'label_name'|trans }}</dt>
+            <dd>{{  tags.name }}</dd>
+        </dl>
+        <p>
+            <a href="{{ url('tags_index') }}" title="back to the list">
+                {{ 'button_back'|trans }}
+            </a>
+        </p>
+    {% else %}
+        <p>
+            {{ 'message_item_not_found'|trans }}
+        </p>
+    {% endif %}
+{% endblock %}

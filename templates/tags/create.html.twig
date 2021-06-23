@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title_tags_create'|trans }}
+{% endblock %}
+
+{% block body %}
+    {% block header %}
+        <h1>{{ 'virtual_note'|trans }}</h1>
+    {% endblock %}
+
+    {% include 'default/_form.html.twig' with {
+        page_title: 'title_tags_create',
+        attr: {
+            method: 'POST',
+            action: url('tags_create')
+        },
+        form: form,
+        submit_label: 'action_create'|trans,
+        back_to_list_path: 'tags_index',
+    } %}
+{% endblock %}

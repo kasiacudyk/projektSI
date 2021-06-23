@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title_todolist_delete'|trans({'%id%': to_do_list.id|default('')}) }}
+{% endblock %}
+
+{% block body %}
+    {% block header %}
+        <h1>{{ 'virtual_note'|trans }}</h1>
+    {% endblock %}
+
+    {% include 'default/_form.html.twig' with {
+        page_title: 'title_todolist_delete',
+        page_title_param: {'%id%': to_do_list.id},
+        attr: {
+            method: 'DELETE',
+            action: url('todolist_delete', {'id': to_do_list.id}),
+        },
+        form: form,
+        submit_label: 'action_delete'|trans,
+        back_to_list_path: 'todolist_index',
+    } %}
+{% endblock %}

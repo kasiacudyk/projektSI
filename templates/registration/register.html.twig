@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'register'|trans }}
+{% endblock %}
+
+{% block body %}
+    {{ include('menu.html.twig') }}
+    {% include 'default/_form.html.twig' with {
+        page_title: 'register',
+        attr: {
+            method: 'POST',
+            action: url('registration_register')
+        },
+        form: form,
+        submit_label: 'register'|trans,
+        message: 'message_register_successfully'|trans,
+        back_to_list_path: 'index',
+    } %}
+{% endblock %}

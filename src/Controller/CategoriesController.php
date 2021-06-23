@@ -7,8 +7,8 @@ namespace App\Controller;
 
 use App\Entity\Categories;
 use App\Form\CategoriesType;
-use App\Repository\CategoriesRepository;
-use Knp\Component\Pager\PaginatorInterface;
+use App\Service\CategoriesService;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,43 +22,40 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class CategoriesController extends AbstractController
 {
-    private CategoriesRepository $categoriesRepository;
-
-    private PaginatorInterface  $paginator;
+    /**
+     * Categories service.
+     *
+     * @var \App\Service\CategoriesService
+     */
+    private $categoriesService;
 
     /**
      * CategoriesController constructor.
      *
-     * @param CategoriesRepository      $categoriesRepository       Categories repository
-     * @param PaginatorInterface        $paginator                  Paginator interface
+     * @param \App\Service\CategoriesService $categoriesService Categories service
      */
-    public function __construct(CategoriesRepository $categoriesRepository, PaginatorInterface $paginator)
+    public function __construct(CategoriesService $categoriesService)
     {
-        $this->categoriesRepository = $categoriesRepository;
-        $this->paginator = $paginator;
+        $this->categoriesService = $categoriesService;
     }
 
     /**
      * Index action.
      *
-     * @param Request                   $request                    HTTP request
-     * @param CategoriesRepository      $categoriesRepository       Categories repository
-     * @param PaginatorInterface        $paginator                  Paginator
+     * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
      *
-     * @return Response                                             HTTP response
+     * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
      * @Route(
      *     "/",
+     *     methods={"GET"},
      *     name="categories_index",
      * )
      */
-    public function index(Request $request, CategoriesRepository $categoriesRepository, PaginatorInterface $paginator): Response
+    public function index(Request $request): Response
     {
-        $pagination = $paginator->paginate(
-            $categoriesRepository->queryAll(),
-            $request->query->getInt('page', 1),
-            CategoriesRepository::PAGINATOR_ITEMS_PER_PAGE
-        );
+        $page = $request->query->getInt('page', 1);
+        $pagination = $this->categoriesService->createPaginatedList($page);
 
         return $this->render(
             'categories/index.html.twig',
@@ -69,7 +66,7 @@ class CategoriesController extends AbstractController
     /**
      * Show action.
      *
-     * @param int $id   Record id
+     * @param \App\Entity\Categories $categories Categories entity
      *
      * @return Response HTTP response
      *
@@ -92,7 +89,6 @@ class CategoriesController extends AbstractController
      * Create action.
      *
      * @param \Symfony\Component\HttpFoundation\Request     $request                HTTP request
-     * @param \App\Repository\CategoriesRepository          $categoriesRepository   Category repository
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -105,14 +101,14 @@ class CategoriesController extends AbstractController
      *     name="categories_create",
      * )
      */
-    public function create(Request $request, CategoriesRepository $categoriesRepository): Response
+    public function create(Request $request): Response
     {
         $categories = new Categories();
         $form = $this->createForm(CategoriesType::class, $categories);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $categoriesRepository->save($categories);
+            $this->categoriesService->save($categories);
 
             $this->addFlash('success', 'message_created_successfully');
 
@@ -130,7 +126,6 @@ class CategoriesController extends AbstractController
      *
      * @param \Symfony\Component\HttpFoundation\Request     $request                HTTP request
      * @param \App\Entity\Categories                        $categories             Categories entity
-     * @param \App\Repository\CategoriesRepository          $categoriesRepository   Categories repository
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -144,13 +139,13 @@ class CategoriesController extends AbstractController
      *     name="categories_edit",
      * )
      */
-    public function edit(Request $request, Categories $categories, CategoriesRepository $categoriesRepository): Response
+    public function edit(Request $request, Categories $categories): Response
     {
         $form = $this->createForm(CategoriesType::class, $categories, ['method' => 'PUT']);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $categoriesRepository->save($categories);
+            $this->categoriesService->save($categories);
 
             $this->addFlash('success', 'message_updated_successfully');
 
@@ -171,7 +166,6 @@ class CategoriesController extends AbstractController
      *
      * @param \Symfony\Component\HttpFoundation\Request $request    HTTP request
      * @param \App\Entity\Categories                      $categories   Category entity
-     * @param \App\Repository\CategoriesRepository        $repository Category repository
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -185,7 +179,7 @@ class CategoriesController extends AbstractController
      *     name="categories_delete",
      * )
      */
-    public function delete(Request $request, Categories $categories, CategoriesRepository $repository): Response
+    public function delete(Request $request, Categories $categories): Response
     {
         if ($categories->getNotes()->count()) {
             $this->addFlash('warning', 'message_categories_contains_notes');
@@ -201,7 +195,7 @@ class CategoriesController extends AbstractController
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $repository->delete($categories);
+            $this->categoriesService->delete($categories);
             $this->addFlash('success', 'message_deleted_successfully');
 
             return $this->redirectToRoute('categories_index');

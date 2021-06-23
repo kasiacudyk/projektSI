@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title_users_edit'|trans({'%id%': users.id|default('')}) }}
+{% endblock %}
+
+{% block body %}
+    {{ include('menu.html.twig') }}
+    {% if is_granted('ROLE_ADMIN') %}
+        {% include 'default/_form.html.twig' with {
+            page_title: 'title_users_edit',
+            page_title_param: {'%id%': users.id},
+            attr: {
+                method: 'PUT',
+                action: url('users_edit', {'id': users.id}),
+            },
+            form: form,
+            submit_label: 'action_edited'|trans,
+            message: 'message_updated_successfully'|trans,
+            back_to_list_path: 'users_index',
+        } %}
+    {% else %}
+        {% include 'default/_form.html.twig' with {
+            page_title: 'title_users_edit',
+            page_title_param: {'%id%': users.id},
+            attr: {
+                method: 'PUT',
+                action: url('users_edit', {'id': users.id}),
+            },
+            form: form,
+            submit_label: 'action_edited'|trans,
+            message: 'message_updated_successfully'|trans,
+            back_to_list_path: 'notes_index',
+        } %}
+    {% endif %}
+{% endblock %}

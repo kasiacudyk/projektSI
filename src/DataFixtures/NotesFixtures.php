@@ -28,6 +28,8 @@ class NotesFixtures extends AbstractBaseFixtures implements DependentFixtureInte
             $notes->setCreatedAt($this->faker->dateTimeBetween('-100 days', '-1 days'));
             $notes->setCategories($this->getRandomReference('categories'));
 
+            $notes->setAuthor($this->getRandomReference('users'));
+
             return $notes;
         });
 
@@ -42,6 +44,6 @@ class NotesFixtures extends AbstractBaseFixtures implements DependentFixtureInte
      */
     public function getDependencies(): array
     {
-        return [CategoriesFixtures::class];
+        return [CategoriesFixtures::class, UserFixtures::class];
     }
 }

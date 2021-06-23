@@ -5,13 +5,15 @@
 
 namespace App\Entity;
 
-use App\Repository\ToDoListRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class ToDoList
  *
- * @ORM\Entity(repositoryClass=ToDoListRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\ToDoListRepository")
+ * @ORM\Table(name="to_do_list")
  */
 
 class ToDoList
@@ -28,41 +30,121 @@ class ToDoList
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * Title.
+     *
+     * @var string
+     *
+     * @ORM\Column(
+     *     type="string",
+     *     length=255,
+     * )
      */
     private $title;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * Tags.
+     *
+     * @var array
+     *
+     * @ORM\ManyToMany(
+     *     targetEntity="App\Entity\Tags",
+     *     inversedBy="to_do_list",
+     * )
+     * @ORM\JoinTable(name="todolist_tags")
      */
-    private $description;
+    private $tags;
 
+    /**
+     * Author.
+     *
+     * @var \App\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $author;
+
+    /**
+     * ToDoList constructor.
+     */
+    public function __construct()
+    {
+        $this->tags = new ArrayCollection();
+    }
+
+    /**
+     * Getter for Id.
+     *
+     * @return int|null Result
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * Getter for Title.
+     *
+     * @return string|null Title
+     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
+    /**
+     * Setter for Title.
+     *
+     * @param string $title Title
+     */
     public function setTitle(string $title): void
     {
         $this->title = $title;
     }
 
-    public function getDescription(): ?string
+    /**
+     * Getter for tags.
+     *
+     * @return \Doctrine\Common\Collections\Collection|\App\Entity\Tags[] Tags collection
+     */
+    public function getTags(): Collection
     {
-        return $this->description;
+        return $this->tags;
     }
 
-    public function setDescription(?string $description): void
+    /**
+     * Add tag to collection.
+     *
+     * @param \App\Entity\Tags $tags Tags entity
+     */
+    public function addTag(Tags $tags): void
     {
-        $this->description = $description;
+        if (!$this->tags->contains($tags)) {
+            $this->tags[] = $tags;
+        }
     }
 
-    public function render(string $string, array $array)
+    /**
+     * Remove tag from collection.
+     *
+     * @param \App\Entity\Tags $tags Tags entity
+     */
+    public function removeTag(Tags $tags): void
     {
+        if ($this->tags->contains($tags)) {
+            $this->tags->removeElement($tags);
+        }
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
+
+        return $this;
     }
 }

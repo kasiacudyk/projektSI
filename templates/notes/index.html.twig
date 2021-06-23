@@ -38,20 +38,30 @@
                     <td>{{ notes.title }}</td>
                     <td>{{ notes.description }}</td>
                     <td>{{ notes.createdAt|format_date('long') }}</td>
-                    <td>{{ notes.categories.name }}</td>
                     <td>
-                        <a href="{{ url('notes_show', {id: notes.id}) }}" title="{{ 'button_view'|trans }}">
-                            {{ 'button_view'|trans }}
+                        <a href="{{ url('notes_index', {'filters.categories_id' : notes.categories.id}) }}" title="{{ notes.categories.name }}">
+                            {{ notes.categories.name }}
                         </a>
-                        <a href="{{ url('notes_edit', {id: notes.id}) }}" title="{{ 'button_edit'|trans }}">
-                            {{ 'button_edit'|trans }}
-                        </a>
+                    </td>
+                    <td>
+                        {% if is_granted('VIEW', notes) %}
+                            <a href="{{ url('notes_show', {id: notes.id}) }}" title="{{ 'button_view'|trans }}">
+                                {{ 'button_view'|trans }}
+                            </a>
+                        {% endif %}
+                        {% if is_granted('EDIT', notes) %}
+                            <a href="{{ url('notes_edit', {id: notes.id}) }}" title="{{ 'button_edit'|trans }}">
+                                {{ 'button_edit'|trans }}
+                            </a>
+                        {% endif %}
                         <a href="{{ url('notes_create', {id: notes.id}) }}" title="{{ 'button_create'|trans }}">
                             {{ 'button_create'|trans }}
                         </a>
-                        <a href="{{ url('notes_delete', {id: notes.id}) }}" title="{{ 'button_delete'|trans }}">
-                            {{ 'button_delete'|trans }}
-                        </a>
+                        {% if is_granted('DELETE', notes) %}
+                            <a href="{{ url('notes_delete', {id: notes.id}) }}" title="{{ 'button_delete'|trans }}">
+                                {{ 'button_delete'|trans }}
+                            </a>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}
