@@ -32,11 +32,9 @@
                     <td>{{ users.lastname }}</td>
                     <td>{{ users.email }}</td>
                     <td>
-                        <a href="{{ url('users_show', {id: users.id}) }}" title="{{ 'button_view'|trans }}">
-                            &#128269;{{ 'button_view'|trans }}
+                        <a href="{{ url('users_show', {id: users.id}) }}" title="{{ 'button_view'|trans }}">{{ 'button_view'|trans }}
                         </a>
-                        <a href="{{ url('users_edit', {id: users.id}) }}" title="{{ 'button_edit'|trans }}" id="op">
-                            &#128736;{{ 'button_edit'|trans }}
+                        <a href="{{ url('users_edit', {id: users.id}) }}" title="{{ 'button_edit'|trans }}">{{ 'button_edit'|trans }}
                         </a>
                     </td>
                 </tr>

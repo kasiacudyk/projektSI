@@ -98,6 +98,138 @@
                 <source>title_note_list</source>
                 <target>Notes</target>
             </trans-unit>
+            <trans-unit id="title_categories_create">
+                <source>title_categories_create</source>
+                <target>Create category</target>
+            </trans-unit>
+            <trans-unit id="title_categories_delete">
+                <source>title_categories_delete</source>
+                <target>Delete category</target>
+            </trans-unit>
+            <trans-unit id="title_categories_edit">
+                <source>title_categories_edit</source>
+                <target>Edit category</target>
+            </trans-unit>
+            <trans-unit id="action_create">
+                <source>action_create</source>
+                <target>Create</target>
+            </trans-unit>
+            <trans-unit id="action_delete">
+                <source>action_delete</source>
+                <target>Delete</target>
+            </trans-unit>
+            <trans-unit id="action_save">
+                <source>action_save</source>
+                <target>Save</target>
+            </trans-unit>
+            <trans-unit id="action_back_to_list">
+                <source>action_back_to_list</source>
+                <target>Back to the list</target>
+            </trans-unit>
+            <trans-unit id="action_edited">
+                <source>action_edited</source>
+                <target>Edited</target>
+            </trans-unit>
+            <trans-unit id="title_users_list">
+                <source>title_users_list</source>
+                <target>Users</target>
+            </trans-unit>
+            <trans-unit id="button_user_edit">
+                <source>button_user_edit</source>
+                <target>Edit user</target>
+            </trans-unit>
+            <trans-unit id="button_log_out">
+                <source>button_log_out</source>
+                <target>Log out</target>
+            </trans-unit>
+            <trans-unit id="title_notes_create">
+                <source>title_notes_create</source>
+                <target>Create note</target>
+            </trans-unit>
+            <trans-unit id="title_notes_delete">
+                <source>title_notes_delete</source>
+                <target>Delete note</target>
+            </trans-unit>
+            <trans-unit id="title_notes_edit">
+                <source>title_notes_edit</source>
+                <target>Edit note</target>
+            </trans-unit>
+            <trans-unit id="label_created_at">
+                <source>label_created_at</source>
+                <target>Created at</target>
+            </trans-unit>
+            <trans-unit id="label_category">
+                <source>label_category</source>
+                <target>Category</target>
+            </trans-unit>
+            <trans-unit id="label_updated_at">
+                <source>label_updated_at</source>
+                <target>Updated at</target>
+            </trans-unit>
+            <trans-unit id="register">
+                <source>register</source>
+                <target>Register</target>
+            </trans-unit>
+            <trans-unit id="message_register_successfully">
+                <source>message_register_successfully</source>
+                <target>Register successfully</target>
+            </trans-unit>
+            <trans-unit id="title_tags_create">
+                <source>title_tags_create</source>
+                <target>Add tag</target>
+            </trans-unit>
+            <trans-unit id="title_tags_delete">
+                <source>title_tags_delete</source>
+                <target>Delete tag</target>
+            </trans-unit>
+            <trans-unit id="title_tags_edit">
+                <source>title_tags_edit</source>
+                <target>Edit tag</target>
+            </trans-unit>
+            <trans-unit id="title_tags_details">
+                <source>title_tags_details</source>
+                <target>Tag details</target>
+            </trans-unit>
+            <trans-unit id="title_todolist_delete">
+                <source>title_todolist_delete</source>
+                <target>Delete task</target>
+            </trans-unit>
+            <trans-unit id="title_todolist_edit">
+                <source>title_todolist_edit</source>
+                <target>Edit task</target>
+            </trans-unit>
+            <trans-unit id="title_users_edit">
+                <source>title_users_edit</source>
+                <target>Edit user</target>
+            </trans-unit>
+            <trans-unit id="label_firstname">
+                <source>label_firstname</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="label_lastname">
+                <source>label_lastname</source>
+                <target>Surname</target>
+            </trans-unit>
+            <trans-unit id="label_email">
+                <source>label_email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="title_users_details">
+                <source>title_users_details</source>
+                <target>User data</target>
+            </trans-unit>
+            <trans-unit id="message_item_not_found">
+                <source>message_item_not_found</source>
+                <target>Item not found</target>
+            </trans-unit>
+            <trans-unit id="message_form_error">
+                <source>message_form_error</source>
+                <target>Form error</target>
+            </trans-unit>
+            <trans-unit id="message_updated_successfully">
+                <source>message_updated_successfully</source>
+                <target>Updated successfully</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

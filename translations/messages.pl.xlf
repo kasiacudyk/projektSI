@@ -98,6 +98,138 @@
                 <source>title_note_list</source>
                 <target>Notatki</target>
             </trans-unit>
+            <trans-unit id="title_categories_create">
+                <source>title_categories_create</source>
+                <target>Stwórz kategorie</target>
+            </trans-unit>
+            <trans-unit id="title_categories_delete">
+                <source>title_categories_delete</source>
+                <target>Usuń kategorie</target>
+            </trans-unit>
+            <trans-unit id="title_categories_edit">
+                <source>title_categories_edit</source>
+                <target>Edytuj kategorie</target>
+            </trans-unit>
+            <trans-unit id="action_create">
+                <source>action_create</source>
+                <target>Stwórz</target>
+            </trans-unit>
+            <trans-unit id="action_delete">
+                <source>action_delete</source>
+                <target>Usuń</target>
+            </trans-unit>
+            <trans-unit id="action_save">
+                <source>action_save</source>
+                <target>Zapisz</target>
+            </trans-unit>
+            <trans-unit id="action_back_to_list">
+                <source>action_back_to_list</source>
+                <target>Wróć do listy</target>
+            </trans-unit>
+            <trans-unit id="action_edited">
+                <source>action_edited</source>
+                <target>Zedytowano</target>
+            </trans-unit>
+            <trans-unit id="title_users_list">
+                <source>title_users_list</source>
+                <target>Użytkownicy</target>
+            </trans-unit>
+            <trans-unit id="button_user_edit">
+                <source>button_user_edit</source>
+                <target>Edytuj profil</target>
+            </trans-unit>
+            <trans-unit id="button_log_out">
+                <source>button_log_out</source>
+                <target>Wyloguj</target>
+            </trans-unit>
+            <trans-unit id="title_notes_create">
+                <source>title_notes_create</source>
+                <target>Dodaj notatke</target>
+            </trans-unit>
+            <trans-unit id="title_notes_delete">
+                <source>title_notes_delete</source>
+                <target>Usuń notatke</target>
+            </trans-unit>
+            <trans-unit id="title_notes_edit">
+                <source>title_notes_edit</source>
+                <target>Edytuj notatke</target>
+            </trans-unit>
+            <trans-unit id="label_created_at">
+                <source>label_created_at</source>
+                <target>Utworzono</target>
+            </trans-unit>
+            <trans-unit id="label_category">
+                <source>label_category</source>
+                <target>Kategoria</target>
+            </trans-unit>
+            <trans-unit id="label_updated_at">
+                <source>label_updated_at</source>
+                <target>Zaktualizowano</target>
+            </trans-unit>
+            <trans-unit id="register">
+                <source>register</source>
+                <target>Zarejestruj</target>
+            </trans-unit>
+            <trans-unit id="message_register_successfully">
+                <source>message_register_successfully</source>
+                <target>Zarejestrowano pomyślnie</target>
+            </trans-unit>
+            <trans-unit id="title_tags_create">
+                <source>title_tags_create</source>
+                <target>Dodaj tag</target>
+            </trans-unit>
+            <trans-unit id="title_tags_delete">
+                <source>title_tags_delete</source>
+                <target>Usuń tag</target>
+            </trans-unit>
+            <trans-unit id="title_tags_edit">
+                <source>title_tags_edit</source>
+                <target>Edytuj tag</target>
+            </trans-unit>
+            <trans-unit id="title_tags_details">
+                <source>title_tags_details</source>
+                <target>Zobacz szczegóły</target>
+            </trans-unit>
+            <trans-unit id="title_todolist_delete">
+                <source>title_todolist_delete</source>
+                <target>Usuń zadanie</target>
+            </trans-unit>
+            <trans-unit id="title_todolist_edit">
+                <source>title_todolist_edit</source>
+                <target>Edytuj zadanie</target>
+            </trans-unit>
+            <trans-unit id="title_users_edit">
+                <source>title_users_edit</source>
+                <target>Edytuj dane użytkownika</target>
+            </trans-unit>
+            <trans-unit id="label_firstname">
+                <source>label_firstname</source>
+                <target>Imię</target>
+            </trans-unit>
+            <trans-unit id="label_lastname">
+                <source>label_lastname</source>
+                <target>Nazwisko</target>
+            </trans-unit>
+            <trans-unit id="label_email">
+                <source>label_email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="title_users_details">
+                <source>title_users_details</source>
+                <target>Dane użytkownika</target>
+            </trans-unit>
+            <trans-unit id="message_item_not_found">
+                <source>message_item_not_found</source>
+                <target>Nie znaleziono obiektu</target>
+            </trans-unit>
+            <trans-unit id="message_form_error">
+                <source>message_form_error</source>
+                <target>Błąd formularza</target>
+            </trans-unit>
+            <trans-unit id="message_updated_successfully">
+                <source>message_updated_successfully</source>
+                <target>Zaktualizowano pomyślnie</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
