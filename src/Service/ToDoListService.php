@@ -42,9 +42,9 @@ class ToDoListService
     /**
      * ToDoListService constructor.
      *
-     * @param ToDoListRepository        $todolistRepository     ToDoList repository
-     * @param PaginatorInterface    $paginator          Paginator
-     * @param TagsService            $tagsService         Tags service
+     * @param ToDoListRepository $todolistRepository ToDoList repository
+     * @param PaginatorInterface $paginator          Paginator
+     * @param TagsService        $tagsService        Tags service
      */
     public function __construct(ToDoListRepository $todolistRepository, PaginatorInterface $paginator, TagsService $tagsService)
     {
@@ -76,27 +76,27 @@ class ToDoListService
     /**
      * Save ToDoList.
      *
-     * @param ToDoList $to_do_list ToDoList entity
+     * @param ToDoList $todolist ToDoList entity
      *
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function save(ToDoList $to_do_list): void
+    public function save(ToDoList $todolist): void
     {
-        $this->todolistRepository->save($to_do_list);
+        $this->todolistRepository->save($todolist);
     }
 
     /**
      * Delete ToDoList.
      *
-     * @param ToDoList $to_do_list ToDoList entity
+     * @param ToDoList $todolist ToDoList entity
      *
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function delete(ToDoList $to_do_list): void
+    public function delete(ToDoList $todolist): void
     {
-        $this->todolistRepository->delete($to_do_list);
+        $this->todolistRepository->delete($todolist);
     }
 
     /**

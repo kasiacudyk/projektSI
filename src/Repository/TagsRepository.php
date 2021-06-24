@@ -34,7 +34,6 @@ class TagsRepository extends ServiceEntityRepository
      *
      * @param ManagerRegistry $registry Manager registry
      */
-
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Tags::class);
@@ -45,24 +44,10 @@ class TagsRepository extends ServiceEntityRepository
      *
      * @return QueryBuilder Query builder
      */
-
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
             ->orderBY('tags.name', 'ASC');
-    }
-
-    /**
-     * Get or create new query builder.
-     *
-     * @param QueryBuilder|null $queryBuilder   Query builder
-     *
-     * @return QueryBuilder                     Query builder
-     */
-
-    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
-    {
-        return $queryBuilder ?? $this->createQueryBuilder('tags');
     }
 
     /**
@@ -91,5 +76,17 @@ class TagsRepository extends ServiceEntityRepository
     {
         $this->_em->remove($tags);
         $this->_em->flush();
+    }
+
+    /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return QueryBuilder                     Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('tags');
     }
 }

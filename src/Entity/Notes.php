@@ -61,41 +61,61 @@ class Notes
      */
     private $author;
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
+
+    /**
+     * @param string $title
+     */
     public function setTitle(string $title): void
     {
         $this->title = $title;
     }
 
+    /**
+     * @return string|null
+     */
     public function getDescription(): ?string
     {
         return $this->description;
     }
 
+    /**
+     * @param string|null $description
+     */
     public function setDescription(?string $description): void
     {
         $this->description = $description;
-
     }
 
+    /**
+     * @return Categories|null
+     */
     public function getCategories(): ?Categories
     {
         return $this->categories;
     }
 
+    /**
+     * @param Categories|null $categories
+     */
     public function setCategories(?Categories $categories): void
     {
         $this->categories = $categories;
-
     }
 
     /**
@@ -118,15 +138,21 @@ class Notes
         $this->createdAt = $createdAt;
     }
 
+    /**
+     * @return User|null
+     */
     public function getAuthor(): ?User
     {
         return $this->author;
     }
 
-    public function setAuthor(?User $author): self
+    /**
+     * @param User|null $author
+     *
+     * @return $this
+     */
+    public function setAuthor(?User $author): void
     {
         $this->author = $author;
-
-        return $this;
     }
 }

@@ -209,21 +209,33 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
+    /**
+     * @return string|null
+     */
     public function getFirstname(): ?string
     {
         return $this->firstname;
     }
 
+    /**
+     * @param string $firstname
+     */
     public function setFirstname(string $firstname): void
     {
         $this->firstname = $firstname;
     }
 
+    /**
+     * @return string|null
+     */
     public function getLastname(): ?string
     {
         return $this->lastname;
     }
 
+    /**
+     * @param string $lastname
+     */
     public function setLastname(string $lastname): void
     {
         $this->lastname = $lastname;

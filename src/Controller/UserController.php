@@ -28,9 +28,9 @@ class UserController extends AbstractController
     /**
      * Index action.
      *
-     * @param Request               $request            HTTP request
-     * @param UserRepository        $userRepository     User repository
-     * @param PaginatorInterface    $paginator          Paginator
+     * @param Request            $request        HTTP request
+     * @param UserRepository     $userRepository User repository
+     * @param PaginatorInterface $paginator      Paginator
      *
      * @return Response HTTP response
      *
@@ -81,8 +81,7 @@ class UserController extends AbstractController
     /**
      * Edit action.
      *
-     * @param Request           $request            HTTP request
-     * @param UserRepository    $userdataRepository User repository
+     * @param Request $request HTTP request
      *
      * @return Response HTTP response
      *
@@ -99,7 +98,7 @@ class UserController extends AbstractController
     public function edit(Request $request, User $user, UserRepository $userRepository): Response
     {
         $User = $this->getUser();
-        if ([User::ROLE_ADMIN]){
+        if ([User::ROLE_ADMIN]) {
             $form = $this->createForm(UsersdataType::class, $user, ['method' => 'PUT']);
             $form->handleRequest($request);
 
@@ -119,8 +118,7 @@ class UserController extends AbstractController
                     'users' => $user,
                 ]
             );
-        }
-        else {
+        } else {
             $form = $this->createForm(UsersdataType::class, $User, ['method' => 'PUT']);
             $form->handleRequest($request);
 
@@ -141,6 +139,5 @@ class UserController extends AbstractController
                 ]
             );
         }
-
     }
 }

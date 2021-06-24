@@ -6,7 +6,6 @@
 namespace App\Form\DataTransformer;
 
 use App\Entity\Tags;
-use App\Repository\TagsRepository;
 use App\Service\TagsService;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Form\DataTransformerInterface;
@@ -73,11 +72,11 @@ class TagsDataTransformer implements DataTransformerInterface
 
         foreach ($tagName as $tagName) {
             if ('' !== trim($tagName)) {
-                $tag = $this->repository->findOneByName(strtolower($tagName));
+                $tag = $this->tagsService->findOneByName(strtolower($tagName));
                 if (null == $tag) {
                     $tag = new Tags();
                     $tag->setName($tagName);
-                    $this->repository->save($tag);
+                    $this->tagsService->save($tag);
                 }
                 $tags[] = $tag;
             }

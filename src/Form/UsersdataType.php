@@ -66,8 +66,8 @@ class UsersdataType extends AbstractType
                 'mapped' => false,
                 'required' => false,
                 'type' => PasswordType::class,
-                'first_options' => array('label'=>'label_new_password'),
-                'second_options' => array('label'=>'label_new_password_repeat'),
+                'first_options' => array('label' => 'label_new_password'),
+                'second_options' => array('label' => 'label_new_password_repeat'),
             ]
         );
     }

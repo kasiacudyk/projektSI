@@ -42,9 +42,9 @@ class NotesService
     /**
      * NotesService constructor.
      *
-     * @param NotesRepository        $notesRepository     Notes repository
-     * @param PaginatorInterface    $paginator          Paginator
-     * @param CategoriesService     $categoriesService  Categories service
+     * @param NotesRepository    $notesRepository   Notes repository
+     * @param PaginatorInterface $paginator         Paginator
+     * @param CategoriesService  $categoriesService Categories service
      */
     public function __construct(NotesRepository $notesRepository, PaginatorInterface $paginator, CategoriesService $categoriesService)
     {

@@ -88,7 +88,7 @@ class CategoriesController extends AbstractController
     /**
      * Create action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request     $request                HTTP request
+     * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -124,8 +124,8 @@ class CategoriesController extends AbstractController
     /**
      * Edit action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request     $request                HTTP request
-     * @param \App\Entity\Categories                        $categories             Categories entity
+     * @param \Symfony\Component\HttpFoundation\Request $request    HTTP request
+     * @param \App\Entity\Categories                    $categories Categories entity
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -165,7 +165,7 @@ class CategoriesController extends AbstractController
      * Delete action.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request    HTTP request
-     * @param \App\Entity\Categories                      $categories   Category entity
+     * @param \App\Entity\Categories                    $categories Category entity
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *

@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Categories Repository.
+ */
 namespace App\Repository;
 
 use App\Entity\Categories;
@@ -31,7 +33,6 @@ class CategoriesRepository extends ServiceEntityRepository
      *
      * @param ManagerRegistry $registry Manager registry
      */
-
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Categories::class);
@@ -42,25 +43,12 @@ class CategoriesRepository extends ServiceEntityRepository
      *
      * @return QueryBuilder Query builder
      */
-
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
             ->orderBY('categories.id', 'ASC');
     }
 
-    /**
-     * Get or create new query builder.
-     *
-     * @param QueryBuilder|null $queryBuilder   Query builder
-     *
-     * @return QueryBuilder                     Query builder
-     */
-
-    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
-    {
-        return $queryBuilder ?? $this->createQueryBuilder('categories');
-    }
 
     /**
      * Save record.
@@ -88,5 +76,17 @@ class CategoriesRepository extends ServiceEntityRepository
     {
         $this->_em->remove($categories);
         $this->_em->flush();
+    }
+
+    /**
+     * Get or create new query builder.
+     *
+     * @param QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return QueryBuilder                     Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('categories');
     }
 }

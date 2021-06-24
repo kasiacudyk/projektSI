@@ -101,7 +101,7 @@ class NotesController extends AbstractController
     /**
      * Create action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request        HTTP request
+     * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -137,8 +137,8 @@ class NotesController extends AbstractController
     /**
      * Edit action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request        HTTP request
-     * @param \App\Entity\Notes                         $notes          Notes entity
+     * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
+     * @param \App\Entity\Notes                         $notes   Notes entity
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -160,7 +160,7 @@ class NotesController extends AbstractController
             return $this->redirectToRoute('notes_index');
         }
 
-        $form = $this->createForm(NoteType::class, $notes, ['method' => 'PUT']);
+        $form = $this->createForm(NotesType::class, $notes, ['method' => 'PUT']);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -183,8 +183,8 @@ class NotesController extends AbstractController
     /**
      * Delete action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request        HTTP request
-     * @param \App\Entity\Notes                         $notes           Notes entity
+     * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
+     * @param \App\Entity\Notes                         $notes   Notes entity
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *

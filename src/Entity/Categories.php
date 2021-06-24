@@ -53,7 +53,7 @@ class Categories
      * Notes.
      *
      * @var \Doctrine\Common\Collections\ArrayCollection|\App\Entity\Notes[] $notes Notes
-     * 
+     *
      * @ORM\OneToMany(targetEntity=Notes::class, mappedBy="categories")
      *
      * @ORM\OneToMany(
@@ -79,27 +79,38 @@ class Categories
      *
      * @Gedmo\Slug(fields={"name"})
      */
-    private $Code;
+    private $code;
 
+    /**
+     * Categories constructor.
+     */
     public function __construct()
     {
         $this->notes = new ArrayCollection();
     }
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
+    /**
+     * @param string $name
+     */
     public function setName(string $name): void
     {
         $this->name = $name;
-
     }
 
     /**
@@ -110,15 +121,20 @@ class Categories
         return $this->notes;
     }
 
+    /**
+     * @param Notes $note
+     */
     public function addNote(Notes $note): void
     {
         if (!$this->notes->contains($note)) {
             $this->notes[] = $note;
             $note->setCategories($this);
         }
-
     }
 
+    /**
+     * @param Notes $note
+     */
     public function removeNote(Notes $note): void
     {
         if ($this->notes->removeElement($note)) {
@@ -127,17 +143,24 @@ class Categories
                 $note->setCategories(null);
             }
         }
-
     }
 
+    /**
+     * @return string|null
+     */
     public function getCode(): ?string
     {
-        return $this->Code;
+        return $this->code;
     }
 
-    public function setCode(string $Code): self
+    /**
+     * @param string $code
+     *
+     * @return $this
+     */
+    public function setCode(string $code): self
     {
-        $this->Code = $Code;
+        $this->code = $code;
 
         return $this;
     }

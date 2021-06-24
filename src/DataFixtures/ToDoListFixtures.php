@@ -21,22 +21,22 @@ class ToDoListFixtures extends AbstractBaseFixtures implements DependentFixtureI
      */
     public function loadData(ObjectManager $manager): void
     {
-        $this->createMany(50, 'to_do_list', function ($i) {
-            $to_do_list = new ToDoList();
-            $to_do_list->setTitle($this->faker->sentence);
+        $this->createMany(50, 'todolist', function ($i) {
+            $todolist = new ToDoList();
+            $todolist->setTitle($this->faker->sentence);
 
             $tags = $this->getRandomReferences(
                 'tags',
                 $this->faker->numberBetween(2, 3)
             );
 
-            foreach($tags as $tags){
-                $to_do_list->addTag($tags);
+            foreach ($tags as $tags) {
+                $todolist->addTag($tags);
             }
 
-            $to_do_list->setAuthor($this->getRandomReference('users'));
+            $todolist->setAuthor($this->getRandomReference('users'));
 
-            return $to_do_list;
+            return $todolist;
         });
 
         $manager->flush();

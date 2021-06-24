@@ -69,14 +69,14 @@ class Tags
      *
      * @ORM\ManyToMany(targetEntity="App\Entity\ToDoList", mappedBy="tags")
      */
-    private $to_do_list;
+    private $todolist;
 
     /**
      * Tags constructor.
      */
     public function __construct()
     {
-        $this->to_do_list = new ArrayCollection();
+        $this->todolist = new ArrayCollection();
     }
 
     /**
@@ -136,32 +136,32 @@ class Tags
      */
     public function getToDoList(): Collection
     {
-        return $this->to_do_list;
+        return $this->todolist;
     }
 
     /**
      * Add ToDoList to collection.
      *
-     * @param \App\Entity\ToDoList $to_do_list ToDoList entity
+     * @param \App\Entity\ToDoList $todolist ToDoList entity
      */
-    public function addToDoList(ToDoList $to_do_list): void
+    public function addToDoList(ToDoList $todolist): void
     {
-        if (!$this->to_do_list->contains($to_do_list)) {
-            $this->to_do_list[] = $to_do_list;
-            $to_do_list->addTag($this);
+        if (!$this->todolist->contains($todolist)) {
+            $this->todolist[] = $todolist;
+            $todolist->addTag($this);
         }
     }
 
     /**
      * Remove ToDoList from collection.
      *
-     * @param \App\Entity\ToDoList $to_do_list ToDoList entity
+     * @param \App\Entity\ToDoList $todolist ToDoList entity
      */
-    public function removeToDoList(ToDoList $to_do_list): void
+    public function removeToDoList(ToDoList $todolist): void
     {
-        if ($this->to_do_list->contains($to_do_list)) {
-            $this->to_do_list->removeElement($to_do_list);
-            $to_do_list->removeTag($this);
+        if ($this->todolist->contains($todolist)) {
+            $this->todolist->removeElement($todolist);
+            $todolist->removeTag($this);
         }
     }
 }

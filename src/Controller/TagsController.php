@@ -124,8 +124,8 @@ class TagsController extends AbstractController
     /**
      * Edit action.
      *
-     * @param Request  $request    HTTP request
-     * @param Tags     $tags       Tags entity
+     * @param Request $request HTTP request
+     * @param Tags    $tags    Tags entity
      *
      * @return Response HTTP response
      *
@@ -163,8 +163,8 @@ class TagsController extends AbstractController
     /**
      * Delete action.
      *
-     * @param Request   $request    HTTP request
-     * @param Tags      $tags       Tags entity
+     * @param Request $request HTTP request
+     * @param Tags    $tags    Tags entity
      *
      * @return Response HTTP response
      *

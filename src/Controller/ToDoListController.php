@@ -43,7 +43,7 @@ class ToDoListController extends AbstractController
     /**
      * Index action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request        HTTP request
+     * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -73,7 +73,7 @@ class ToDoListController extends AbstractController
     /**
      * Show action.
      *
-     * @param \App\Entity\ToDoList $to_do_list ToDoList entity
+     * @param \App\Entity\ToDoList $todolist ToDoList entity
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -84,9 +84,9 @@ class ToDoListController extends AbstractController
      *     requirements={"id": "[1-9]\d*"},
      * )
      */
-    public function show(ToDoList $to_do_list): Response
+    public function show(ToDoList $todolist): Response
     {
-        if ($to_do_list->getAuthor() !== $this->getUser()) {
+        if ($todolist->getAuthor() !== $this->getUser()) {
             $this->addFlash('warning', 'message_item_not_found');
 
             return $this->redirectToRoute('todolist_index');
@@ -94,14 +94,14 @@ class ToDoListController extends AbstractController
 
         return $this->render(
             'todolist/show.html.twig',
-            ['to_do_list' => $to_do_list]
+            ['todolist' => $todolist]
         );
     }
 
     /**
      * Create action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request        HTTP request
+     * @param \Symfony\Component\HttpFoundation\Request $request HTTP request
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -116,13 +116,13 @@ class ToDoListController extends AbstractController
      */
     public function create(Request $request): Response
     {
-        $to_do_list = new ToDoList();
-        $form = $this->createForm(ToDoListType::class, $to_do_list);
+        $todolist = new ToDoList();
+        $form = $this->createForm(ToDoListType::class, $todolist);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $to_do_list->setAuthor($this->getUser());
-            $this->todolistService->save($to_do_list);
+            $todolist->setAuthor($this->getUser());
+            $this->todolistService->save($todolist);
             $this->addFlash('success', 'message_created_successfully');
 
             return $this->redirectToRoute('todolist_index');
@@ -137,8 +137,8 @@ class ToDoListController extends AbstractController
     /**
      * Edit action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request        HTTP request
-     * @param \App\Entity\ToDoList                          $to_do_list           ToDoList entity
+     * @param \Symfony\Component\HttpFoundation\Request $request  HTTP request
+     * @param \App\Entity\ToDoList                      $todolist ToDoList entity
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -152,20 +152,20 @@ class ToDoListController extends AbstractController
      *     name="todolist_edit",
      * )
      */
-    public function edit(Request $request, ToDoList $to_do_list): Response
+    public function edit(Request $request, ToDoList $todolist): Response
     {
-        if ($to_do_list->getAuthor() !== $this->getUser()) {
+        if ($todolist->getAuthor() !== $this->getUser()) {
             $this->addFlash('warning', 'message_item_not_found');
 
             return $this->redirectToRoute('todolist_index');
         }
 
-        $form = $this->createForm(ToDoListType::class, $to_do_list, ['method' => 'PUT']);
+        $form = $this->createForm(ToDoListType::class, $todolist, ['method' => 'PUT']);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $to_do_list->setAuthor($this->getUser());
-            $this->todolistService->save($to_do_list);
+            $todolist->setAuthor($this->getUser());
+            $this->todolistService->save($todolist);
             $this->addFlash('success', 'message_updated_successfully');
 
             return $this->redirectToRoute('todolist_index');
@@ -175,7 +175,7 @@ class ToDoListController extends AbstractController
             'todolist/edit.html.twig',
             [
                 'form' => $form->createView(),
-                'to_do_list' => $to_do_list,
+                'todolist' => $todolist,
             ]
         );
     }
@@ -183,8 +183,8 @@ class ToDoListController extends AbstractController
     /**
      * Delete action.
      *
-     * @param \Symfony\Component\HttpFoundation\Request $request        HTTP request
-     * @param \App\Entity\ToDoList                          $to_do_list          ToDoList entity
+     * @param \Symfony\Component\HttpFoundation\Request $request  HTTP request
+     * @param \App\Entity\ToDoList                      $todolist ToDoList entity
      *
      * @return \Symfony\Component\HttpFoundation\Response HTTP response
      *
@@ -198,15 +198,15 @@ class ToDoListController extends AbstractController
      *     name="todolist_delete",
      * )
      */
-    public function delete(Request $request, ToDoList $to_do_list): Response
+    public function delete(Request $request, ToDoList $todolist): Response
     {
-        if ($to_do_list->getAuthor() !== $this->getUser()) {
+        if ($todolist->getAuthor() !== $this->getUser()) {
             $this->addFlash('warning', 'message.item_not_found');
 
             return $this->redirectToRoute('todolist_index');
         }
 
-        $form = $this->createForm(FormType::class, $to_do_list, ['method' => 'DELETE']);
+        $form = $this->createForm(FormType::class, $todolist, ['method' => 'DELETE']);
         $form->handleRequest($request);
 
         if ($request->isMethod('DELETE') && !$form->isSubmitted()) {
@@ -224,7 +224,7 @@ class ToDoListController extends AbstractController
             'todolist/delete.html.twig',
             [
                 'form' => $form->createView(),
-                'to_do_list' => $to_do_list,
+                'todolist' => $todolist,
             ]
         );
     }

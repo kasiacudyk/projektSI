@@ -20,7 +20,10 @@ class RegistrationController extends AbstractController
     /**
      * Registration.
      *
-     * @param Request $request HTTP request
+     * @param Request                      $request         HTTP request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *
      * @Route(
      *     "/register",
@@ -35,7 +38,6 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $password = $passwordEncoder->encodePassword(
                 $user,
                 $user->getPassword()

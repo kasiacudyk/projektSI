@@ -31,6 +31,10 @@ class ToDoListRepository extends ServiceEntityRepository
      */
     const PAGINATOR_ITEMS_PER_PAGE = 10;
 
+    /**
+     * ToDoListRepository constructor.
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, ToDoList::class);
@@ -39,28 +43,28 @@ class ToDoListRepository extends ServiceEntityRepository
     /**
      * Save record.
      *
-     * @param \App\Entity\ToDoList $to_do_list ToDoList entity
+     * @param \App\Entity\ToDoList $todolist ToDoList entity
      *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function save(ToDoList $to_do_list): void
+    public function save(ToDoList $todolist): void
     {
-        $this->_em->persist($to_do_list);
+        $this->_em->persist($todolist);
         $this->_em->flush();
     }
 
     /**
      * Delete record.
      *
-     * @param \App\Entity\ToDoList $to_do_list ToDoList entity
+     * @param \App\Entity\ToDoList $todolist ToDoList entity
      *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function delete(ToDoList $to_do_list): void
+    public function delete(ToDoList $todolist): void
     {
-        $this->_em->remove($to_do_list);
+        $this->_em->remove($todolist);
         $this->_em->flush();
     }
 
@@ -75,32 +79,20 @@ class ToDoListRepository extends ServiceEntityRepository
     {
         $queryBuilder = $this->getOrCreateQueryBuilder()
             ->select(
-                'partial to_do_list.{id, title}',
+                'partial todolist.{id, title}',
                 'partial tags.{id, name}'
             )
-            ->leftJoin('to_do_list.tags', 'tags')
-            ->orderBy('to_do_list.title', 'ASC');
+            ->join('todolist.tags', 'tags')
+            ->orderBy('todolist.title', 'ASC');
         $queryBuilder = $this->applyFiltersToList($queryBuilder, $filters);
 
         return $queryBuilder;
     }
 
     /**
-     * Get or create new query builder.
-     *
-     * @param \Doctrine\ORM\QueryBuilder|null $queryBuilder Query builder
-     *
-     * @return \Doctrine\ORM\QueryBuilder Query builder
-     */
-    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
-    {
-        return $queryBuilder ?? $this->createQueryBuilder('to_do_list');
-    }
-
-    /**
      * Query tasks by author.
      *
-     * @param \App\Entity\User $user User entity
+     * @param \App\Entity\User $user    User entity
      * @param array            $filters Filters array
      *
      * @return \Doctrine\ORM\QueryBuilder Query builder
@@ -109,7 +101,7 @@ class ToDoListRepository extends ServiceEntityRepository
     {
         $queryBuilder = $this->queryAll();
 
-        $queryBuilder->andWhere('to_do_list.author = :author')
+        $queryBuilder->andWhere('todolist.author = :author')
             ->setParameter('author', $user);
 
         return $queryBuilder;
@@ -131,5 +123,17 @@ class ToDoListRepository extends ServiceEntityRepository
         }
 
         return $queryBuilder;
+    }
+
+    /**
+     * Get or create new query builder.
+     *
+     * @param \Doctrine\ORM\QueryBuilder|null $queryBuilder Query builder
+     *
+     * @return \Doctrine\ORM\QueryBuilder Query builder
+     */
+    private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
+    {
+        return $queryBuilder ?? $this->createQueryBuilder('todolist');
     }
 }
