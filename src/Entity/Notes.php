@@ -7,6 +7,8 @@ namespace App\Entity;
 
 use App\Repository\NotesRepository;
 use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -154,5 +156,60 @@ class Notes
     public function setAuthor(?User $author): void
     {
         $this->author = $author;
+    }
+
+    /**
+     * Tags.
+     *
+     * @var array
+     *
+     * @ORM\ManyToMany(
+     *     targetEntity="App\Entity\Tags",
+     *     inversedBy="notes",
+     * )
+     * @ORM\JoinTable(name="notes_tags")
+     */
+    private $tags;
+
+    /**
+     * Notes constructor.
+     */
+    public function __construct()
+    {
+        $this->tags = new ArrayCollection();
+    }
+
+    /**
+     * Getter for tags.
+     *
+     * @return \Doctrine\Common\Collections\Collection|\App\Entity\Tags[] Tags collection
+     */
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Add tag to collection.
+     *
+     * @param \App\Entity\Tags $tags Tags entity
+     */
+    public function addTag(Tags $tags): void
+    {
+        if (!$this->tags->contains($tags)) {
+            $this->tags[] = $tags;
+        }
+    }
+
+    /**
+     * Remove tag from collection.
+     *
+     * @param \App\Entity\Tags $tags Tags entity
+     */
+    public function removeTag(Tags $tags): void
+    {
+        if ($this->tags->contains($tags)) {
+            $this->tags->removeElement($tags);
+        }
     }
 }

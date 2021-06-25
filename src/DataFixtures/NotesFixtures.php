@@ -30,6 +30,15 @@ class NotesFixtures extends AbstractBaseFixtures implements DependentFixtureInte
 
             $notes->setAuthor($this->getRandomReference('users'));
 
+            $tags = $this->getRandomReferences(
+                'tags',
+                $this->faker->numberBetween(1, 3)
+            );
+
+            foreach ($tags as $tags) {
+                $notes->addTag($tags);
+            }
+
             return $notes;
         });
 
@@ -44,6 +53,6 @@ class NotesFixtures extends AbstractBaseFixtures implements DependentFixtureInte
      */
     public function getDependencies(): array
     {
-        return [CategoriesFixtures::class, UserFixtures::class];
+        return [CategoriesFixtures::class, UserFixtures::class, TagsFixtures::class];
     }
 }

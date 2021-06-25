@@ -230,6 +230,10 @@
                 <source>message_updated_successfully</source>
                 <target>Zaktualizowano pomyślnie</target>
             </trans-unit>
+            <trans-unit id="message_deleted_successfully">
+                <source>message_deleted_successfully</source>
+                <target>Usunięto pomyślnie</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

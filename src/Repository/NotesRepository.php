@@ -5,7 +5,9 @@
 
 namespace App\Repository;
 
+use App\Entity\Categories;
 use App\Entity\Notes;
+use App\Entity\Tags;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
@@ -80,9 +82,11 @@ class NotesRepository extends ServiceEntityRepository
         $queryBuilder = $this->getOrCreateQueryBuilder()
             ->select(
                 'partial notes.{id, createdAt, title, description}',
-                'partial categories.{id, name}'
+                'partial categories.{id, name}',
+                'partial tags.{id, name}'
             )
             ->join('notes.categories', 'categories')
+            ->leftJoin('notes.tags', 'tags')
             ->orderBy('notes.createdAt', 'DESC');
         $queryBuilder = $this->applyFiltersToList($queryBuilder, $filters);
 
@@ -142,6 +146,11 @@ class NotesRepository extends ServiceEntityRepository
         if (isset($filters['categories']) && $filters['categories'] instanceof Categories) {
             $queryBuilder->andWhere('categories = :categories')
                 ->setParameter('categories', $filters['categories']);
+        }
+
+        if (isset($filters['tags']) && $filters['tags'] instanceof Tags) {
+            $queryBuilder->andWhere('tags IN (:tags)')
+                ->setParameter('tags', $filters['tags']);
         }
 
         return $queryBuilder;

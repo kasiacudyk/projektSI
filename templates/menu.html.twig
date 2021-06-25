@@ -6,10 +6,15 @@
         <ul class="nav justify-content-center">
             <li class="nav-item">
                 <a href="{{ url('notes_index') }}"><button type="button" class="btn btn-light">Notatki</button></a>
-
+                <ul class="nav justify-content-center">
+                    <li class="nav-item"><a href="{{ url('notes_create') }}"><button type="button" class="btn btn-light">&#10133</button></a></li>
+                </ul>
             </li>
             <li class="nav-item">
                 <a href="{{ url('todolist_index') }}"><button type="button" class="btn btn-light">Lista zadań</button></a>
+                <ul class="nav justify-content-center">
+                    <li class="nav-item"><a href="{{ url('todolist_create') }}"><button type="button" class="btn btn-light">&#10133</button></a></li>
+                </ul>
             </li>
             <li class="nav-item">
                 <a href="{{ url('categories_index') }}"><button type="button" class="btn btn-light">Kategorie</button></a>
@@ -26,7 +31,7 @@
             <li class="nav-item">
             {% if app.user %}
                 <a href="{{ url('users_show', {id: app.user.id}) }}" title="show user"><button type="button" class="btn btn-light">{{ app.user.username }}</button></a>
-                <ul>
+                <ul class="nav justify-content-center">
                     <li><a href="{{ url('users_edit', {id: app.user.id}) }}"><button type="button" class="btn btn-light">{{ 'button_user_edit'|trans }}</button></a></li>
                     <li><a href="{{ path('app_logout') }}"><button type="button" class="btn btn-light">{{ 'button_log_out'|trans }}</button></a></li>
                 </ul>

@@ -40,17 +40,26 @@ class NotesService
     private $categoriesService;
 
     /**
+     * Tag service.
+     *
+     * @var \App\Service\TagsService
+     */
+    private $tagsService;
+
+    /**
      * NotesService constructor.
      *
      * @param NotesRepository    $notesRepository   Notes repository
      * @param PaginatorInterface $paginator         Paginator
      * @param CategoriesService  $categoriesService Categories service
+     * @param \App\Service\TagsService                 $tagsService      Tags service
      */
-    public function __construct(NotesRepository $notesRepository, PaginatorInterface $paginator, CategoriesService $categoriesService)
+    public function __construct(NotesRepository $notesRepository, PaginatorInterface $paginator, CategoriesService $categoriesService, TagsService $tagsService)
     {
         $this->notesRepository = $notesRepository;
         $this->paginator = $paginator;
         $this->categoriesService = $categoriesService;
+        $this->tagsService = $tagsService;
     }
 
     /**
@@ -115,6 +124,13 @@ class NotesService
             );
             if (null !== $categories) {
                 $resultFilters['categories'] = $categories;
+            }
+        }
+
+        if (isset($filters['tags_id']) && is_numeric($filters['tags_id'])) {
+            $tags = $this->tagsService->findOneById($filters['tags_id']);
+            if (null !== $tags) {
+                $resultFilters['tags'] = $tags;
             }
         }
 
