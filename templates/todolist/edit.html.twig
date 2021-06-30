@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'title_todolist_edit'|trans({'%id%': to_do_list.id|default('')}) }}
+    {{ 'title_todolist_edit'|trans({'%id%': todolist.id|default('')}) }}
 {% endblock %}
 
 {% block body %}
@@ -11,10 +11,10 @@
 
     {% include 'default/_form.html.twig' with {
         page_title: 'title_todolist_edit',
-        page_title_param: {'%id%': to_do_list.id},
+        page_title_param: {'%id%': todolist.id},
         attr: {
             method: 'PUT',
-            action: url('todolist_edit', {'id': to_do_list.id}),
+            action: url('todolist_edit', {'id': todolist.id}),
         },
         form: form,
         back_to_list_path: 'todolist_index',

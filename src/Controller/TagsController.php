@@ -109,7 +109,7 @@ class TagsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->tagService->save($tags);
+            $this->tagsService->save($tags);
             $this->addFlash('success', 'message_created_successfully');
 
             return $this->redirectToRoute('tags_index');

@@ -24,14 +24,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class ToDoListController extends AbstractController
 {
     /**
-     * Task service.
+     * ToDoList service.
      *
      * @var ToDoListService
      */
     private ToDoListService $todolistService;
 
     /**
-     * TaskController constructor.
+     * ToDoListController constructor.
      *
      * @param ToDoListService $todolistService ToDoList service
      */
@@ -214,7 +214,7 @@ class ToDoListController extends AbstractController
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->todolistService->delete($task);
+            $this->todolistService->delete($todolist);
             $this->addFlash('success', 'message_deleted_successfully');
 
             return $this->redirectToRoute('todolist_index');

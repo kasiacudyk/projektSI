@@ -23,20 +23,20 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'label_id'|trans, 'to_do_list.id') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label_title'|trans, 'to_do_list.title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_id'|trans, 'todolist.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_title'|trans, 'todolist.title') }}</th>
                 <th>{{ 'label_tags'|trans }}</th>
                 <th>{{ 'label_actions'|trans }}</th>
             </tr>
             </thead>
             <tbody>
-            {% for to_do_list in pagination.items %}
+            {% for todolist in pagination.items %}
                 <tr>
-                    <td>{{ to_do_list.id }}</td>
-                    <td>{{ to_do_list.title }}</td>
+                    <td>{{ todolist.id }}</td>
+                    <td>{{ todolist.title }}</td>
                     <td>
-                        {% if to_do_list.tags is defined and to_do_list.tags|length %}
-                            {% for tags in to_do_list.tags %}
+                        {% if todolist.tags is defined and todolist.tags|length %}
+                            {% for tags in todolist.tags %}
                                 <a href="{{ url('todolist_index', {'filters.tags_id' : tags.id}) }}" title="{{ tags.name }}">
                                     {{ tags.name }}
                                 </a>
@@ -46,21 +46,21 @@
                         {% endif %}
                     </td>
                     <td>
-                        {% if is_granted('VIEW', to_do_list) %}
-                        <a href="{{ url('todolist_show', {id: to_do_list.id}) }}" title="{{ 'button_view'|trans }}">
+                        {% if is_granted('VIEW', todolist) %}
+                        <a href="{{ url('todolist_show', {id: todolist.id}) }}" title="{{ 'button_view'|trans }}">
                             {{ 'button_view'|trans }}
                         </a>
                         {% endif %}
-                        {% if is_granted('EDIT', to_do_list) %}
-                            <a href="{{ url('todolist_edit', {id: to_do_list.id}) }}" title="{{ 'button_edit'|trans }}">
+                        {% if is_granted('EDIT', todolist) %}
+                            <a href="{{ url('todolist_edit', {id: todolist.id}) }}" title="{{ 'button_edit'|trans }}">
                                 {{ 'button_edit'|trans }}
                             </a>
                         {% endif %}
-                        <a href="{{ url('todolist_create', {id: to_do_list.id}) }}" title="{{ 'button_create'|trans }}">
+                        <a href="{{ url('todolist_create', {id: todolist.id}) }}" title="{{ 'button_create'|trans }}">
                             {{ 'button_create'|trans }}
                         </a>
-                        {% if is_granted('DELETE', to_do_list) %}
-                            <a href="{{ url('todolist_delete', {id: to_do_list.id}) }}" title="{{ 'button_delete'|trans }}">
+                        {% if is_granted('DELETE', todolist) %}
+                            <a href="{{ url('todolist_delete', {id: todolist.id}) }}" title="{{ 'button_delete'|trans }}">
                                 {{ 'button_delete'|trans }}
                             </a>
                         {% endif %}

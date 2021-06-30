@@ -43,6 +43,12 @@ class Tags
      *     length=64,
      * )
      *
+     * @Assert\Type(type="string")
+     * @Assert\Length(
+     *     min="3",
+     *     max="64",
+     * )
+     *
      * @Gedmo\Slug(fields={"name"})
      */
     private $code;
@@ -59,6 +65,10 @@ class Tags
      *
      * @Assert\Type(type="string")
      * @Assert\NotBlank
+     * @Assert\Length(
+     *     min="3",
+     *     max="64",
+     * )
      */
     private $name;
 
@@ -67,7 +77,9 @@ class Tags
      *
      * @var \Doctrine\Common\Collections\ArrayCollection|\App\Entity\ToDoList[] ToDoList
      *
-     * @ORM\ManyToMany(targetEntity="App\Entity\ToDoList", mappedBy="tags")
+     * @ORM\ManyToMany(
+     *     targetEntity="App\Entity\ToDoList",
+     *     mappedBy="tags")
      */
     private $todolist;
 

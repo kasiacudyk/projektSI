@@ -234,6 +234,42 @@
                 <source>message_deleted_successfully</source>
                 <target>Deleted successfully</target>
             </trans-unit>
+            <trans-unit id="message_created_successfully">
+                <source>message_created_successfully</source>
+                <target>Created successfully</target>
+            </trans-unit>
+            <trans-unit id="label_password">
+                <source>label_password</source>
+                <target>Password</target>
+            </trans-unit>
+            <trans-unit id="label_password_repeat">
+                <source>label_password_repeat</source>
+                <target>Repeat password</target>
+            </trans-unit>
+            <trans-unit id="title_todolist_create">
+                <source>title_todolist_create</source>
+                <target>Create task</target>
+            </trans-unit>
+            <trans-unit id="label_new_firstname">
+                <source>label_new_firstname</source>
+                <target>New first name</target>
+            </trans-unit>
+            <trans-unit id="label_new_lastname">
+                <source>label_new_lastname</source>
+                <target>New last name</target>
+            </trans-unit>
+            <trans-unit id="label_new_email">
+                <source>label_new_email</source>
+                <target>New email</target>
+            </trans-unit>
+            <trans-unit id="label_new_password">
+                <source>label_new_password</source>
+                <target>New password</target>
+            </trans-unit>
+            <trans-unit id="label_new_password_repeat">
+                <source>label_new_password_repeat</source>
+                <target>Repeat new password</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

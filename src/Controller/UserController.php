@@ -81,7 +81,9 @@ class UserController extends AbstractController
     /**
      * Edit action.
      *
-     * @param Request $request HTTP request
+     * @param Request        $request        HTTP request
+     * @param User           $user
+     * @param UserRepository $userRepository
      *
      * @return Response HTTP response
      *
@@ -108,7 +110,7 @@ class UserController extends AbstractController
 
                 $this->addFlash('success', 'message_updated_successfully');
 
-                return $this->redirectToRoute('users_index');
+                return $this->redirectToRoute('notes_index');
             }
 
             return $this->render(
