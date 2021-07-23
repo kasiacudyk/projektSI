@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Class ToDoList
  *
  * @ORM\Entity(repositoryClass="App\Repository\ToDoListRepository")
- * @ORM\Table(name="to_do_list")
+ * @ORM\Table(name="todolist")
  *
  * @UniqueEntity(fields={"title"})
  */
@@ -59,7 +59,7 @@ class ToDoList
      *
      * @ORM\ManyToMany(
      *     targetEntity="App\Entity\Tags",
-     *     inversedBy="to_do_list",
+     *     inversedBy="todolist",
      * )
      * @ORM\JoinTable(name="todolist_tags")
      */

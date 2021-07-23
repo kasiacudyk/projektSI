@@ -95,6 +95,6 @@ class ToDoListType extends AbstractType
      */
     public function getBlockPrefix(): string
     {
-        return 'to_do_list';
+        return 'todolist';
     }
 }

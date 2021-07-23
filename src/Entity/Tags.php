@@ -73,6 +73,18 @@ class Tags
     private $name;
 
     /**
+     * Notes.
+     *
+     * @var ArrayCollection|Notes[] Notes
+     *
+     * @ORM\ManyToMany(
+     *     targetEntity="App\Entity\Notes",
+     *     mappedBy="tags"
+     * )
+     */
+    private $notes;
+
+    /**
      * To Do List.
      *
      * @var \Doctrine\Common\Collections\ArrayCollection|\App\Entity\ToDoList[] ToDoList
@@ -88,6 +100,7 @@ class Tags
      */
     public function __construct()
     {
+        $this->notes = new ArrayCollection();
         $this->todolist = new ArrayCollection();
     }
 

@@ -86,6 +86,19 @@ class Notes
     private $author;
 
     /**
+     * Tags.
+     *
+     * @var array
+     *
+     * @ORM\ManyToMany(
+     *     targetEntity="App\Entity\Tags",
+     *     inversedBy="notes",
+     * )
+     * @ORM\JoinTable(name="notes_tags")
+     */
+    private $tags;
+
+    /**
      * @return int|null
      */
     public function getId(): ?int
@@ -180,18 +193,6 @@ class Notes
         $this->author = $author;
     }
 
-    /**
-     * Tags.
-     *
-     * @var array
-     *
-     * @ORM\ManyToMany(
-     *     targetEntity="App\Entity\Tags",
-     *     inversedBy="notes",
-     * )
-     * @ORM\JoinTable(name="notes_tags")
-     */
-    private $tags;
 
     /**
      * Notes constructor.
